@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import './Card.css';
+import { Grid } from 'semantic-ui-react';
 
 class Card extends Component {
+
   displayPeople = () => {
     const { name, image, birthYear, homePlanet} = this.props;
-
     return(
       <div className='card'>
         <div className='card-content'>
           <div className='card-name'>
             { name }
           </div>
-          {/* <img src='http://localhost:3008/darth_vader.jpg' alt='profile'/> */}
           <img src={ "http://localhost:3008/" + image } alt='profile' />
           <p>
             <span>Birthday:</span>
@@ -28,9 +28,9 @@ class Card extends Component {
 
   render() {
     return(
-      <div>
+      <Grid.Column>
         { this.displayPeople() }
-      </div>
+      </Grid.Column>
     );
   }
 }

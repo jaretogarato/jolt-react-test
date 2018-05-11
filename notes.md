@@ -1,9 +1,9 @@
-Date      Start Time  			End Time
-----      ----------        --------
-5/11      11:03 AM          11:54 AM
-5/11      1:05 PM           1:23 PM
-5/11      1:41 PM           2:02 PM
-5/11      3:01 PM           
-
+Date    Start Time  	End Time    Minutes    Notes
+----    ----------    --------    -------    ----------------------------------
+5/11    11:03 AM      11:54 AM    41
+5/11    1:05 PM       1:23 PM     18
+5/11    1:41 PM       2:02 PM     21
+5/11    3:01 PM       3:37 PM     36         Part I (steps 1-3) complete
+5/11    4:09 PM       4:
 
 Put any notes for us here.
