@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "react": "16.2.0",
-    "react-dom": "16.2.0"
+    "react-dom": "16.2.0",
+    "semantic-ui-css": "^2.3.1",
+    "semantic-ui-react": "^0.80.0"
   },
   "scripts": {
     "start": "./node_modules/.bin/concurrently \"cd ./node_modules/swapi-json-server && node app.js\" \"react-scripts start\"",
