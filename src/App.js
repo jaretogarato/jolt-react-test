@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Card from './Card.js';
+import Cards from './Cards.js';
 import SearchBar from "./SearchBar.js"
 import star from './images/star.svg';
 import wars from './images/wars.svg';
@@ -15,7 +15,7 @@ class App extends Component {
           <img src={wars} alt="wars-logo" />
         </div>
         <SearchBar />
-        <Card />
+        <Cards />
       </div>
     );
   }
