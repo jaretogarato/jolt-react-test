@@ -16,23 +16,33 @@ class Card extends Component {
         .then((data) => { this.setState({ planets: data }) });
   }
 
+  getPlanetName = (planetID) => {
+    let planet, planetName;
+
+    if( this.state.planets[planetID] ) {
+      return (this.state.planets[planetID].name);
+    } else {
+      return("unknown");
+    }
+  }
+
   displayPeople = () => {
     return this.state.people.map( (person, i) => {
       let homePlanetID = person.homeworld;
-      let homePlanet = this.state.planets.homePlanetID;
+
       return(
         <Grid.Column width={4} key={i}>
           <Segment>
             <Header as='h1'>
-              Name: {person.name}
+              Name: { person.name }
               <br />
-              Image: {person.image}
+              Image: { person.image }
               <br />
-              Birthday: {person.birth_year}
+              Birthday: { person.birth_year }
               <br />
-              Home Planet ID: {homePlanetID}
+              Home Planet ID: { homePlanetID }
               <br />
-              Home Planet: {homePlanet}
+              Home Planet: { this.getPlanetName(homePlanetID) }
               <hr />
             </Header>
           </Segment>
