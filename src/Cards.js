@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Card from './Card.js';
 import './Card.css';
-import { Segment, Header, Grid} from 'semantic-ui-react';
+import { Segment, Grid} from 'semantic-ui-react';
 
 
 class Cards extends Component {
@@ -18,8 +18,6 @@ class Cards extends Component {
   }
 
   getPlanetName = (planetID) => {
-    let planet, planetName;
-
     if( this.state.planets[planetID] ) {
       return (this.state.planets[planetID].name);
     } else {
@@ -39,7 +37,6 @@ class Cards extends Component {
           birthYear={ person.birth_year }
           homePlanet={ homePlanetName }
           key={ i }
-          i={ i }
         >
         </Card>
       )

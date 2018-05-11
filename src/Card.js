@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import './Card.css';
-import { Segment, Header, Grid} from 'semantic-ui-react';
-
 
 class Card extends Component {
   displayPeople = () => {
-    const { name, image, birthYear, homePlanet, i } = this.props;
-    let imgSrc = "http"
+    const { name, image, birthYear, homePlanet} = this.props;
 
     return(
       <div className='card'>
