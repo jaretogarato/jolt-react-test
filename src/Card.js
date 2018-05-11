@@ -4,27 +4,36 @@ import { Segment, Header, Grid} from 'semantic-ui-react';
 
 
 class Card extends Component {
-  state = { people: [] }
+  state = { people: [], planets: [] }
 
   componentDidMount() {
     fetch('http://localhost:3008/people')
       .then(data => data.json())
       .then((data) => { this.setState({ people: data }) });
+
+      fetch('http://localhost:3008/planets')
+        .then(data => data.json())
+        .then((data) => { this.setState({ planets: data }) });
   }
 
   displayPeople = () => {
-    return this.state.people.map( person => {
+    return this.state.people.map( (person, i) => {
+      let homePlanetID = person.homeworld;
+      let homePlanet = this.state.planets.homePlanetID;
       return(
-        <Grid.Column width={4}>
+        <Grid.Column width={4} key={i}>
           <Segment>
             <Header as='h1'>
               Name: {person.name}
               <br />
               Image: {person.image}
               <br />
-              Birthday: {person.birthyear}
+              Birthday: {person.birth_year}
               <br />
-              Home Planet ID: {person.homeworld}
+              Home Planet ID: {homePlanetID}
+              <br />
+              Home Planet: {homePlanet}
+              <hr />
             </Header>
           </Segment>
         </Grid.Column>
