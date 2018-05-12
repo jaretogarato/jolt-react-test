@@ -12,7 +12,8 @@
     "react-dom": "16.2.0",
     "react-paginate": "^5.2.3",
     "semantic-ui-css": "^2.3.1",
-    "semantic-ui-react": "^0.80.0"
+    "semantic-ui-react": "^0.80.0",
+    "styled-components": "^3.2.6"
   },
   "scripts": {
     "start": "./node_modules/.bin/concurrently \"cd ./node_modules/swapi-json-server && node app.js\" \"react-scripts start\"",
