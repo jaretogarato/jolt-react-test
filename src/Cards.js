@@ -25,11 +25,6 @@ class Cards extends Component {
       .then( (data) => { this.setState({ planets: data }) } );
   }
 
-  // componentDidUpdate() {
-  //   console.log('numCards: ', this.state.numCards);
-  //   console.log('numPages: ', this.state.numPages);
-  // }
-
   getNumCardsAndNumPages = () => {
     fetch(`http://localhost:3008/people`)
       .then( data => data.json() )

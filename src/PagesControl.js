@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Button, Icon, Divider, Segment } from 'semantic-ui-react';
+import { Grid, Button, Icon, Segment } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 const NoClick = styled(Button)`
