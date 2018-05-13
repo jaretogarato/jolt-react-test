@@ -21,7 +21,7 @@ class Cards extends Component {
    }
 
   componentDidMount() {
-    this.getNumCardsAndNumPages();
+    // this.getNumCardsAndNumPages();
     // this.getPeople(1);
 
     axios.get('http://localhost:3008/people')
@@ -29,18 +29,42 @@ class Cards extends Component {
       .then( res => {
         this.setState({ people: res.data });
         // console.log(res.data);
-    });
-
-    axios.get('http://localhost:3008/planets')
-      .catch( err => console.log('Error retrieving planets: ', err ))
-      .then( res => {
-        this.setState({ planets: res.data });
-        // console.log(res.data);
+        axios.get('http://localhost:3008/planets')
+          .catch( err => console.log('Error retrieving planets: ', err ))
+          .then( res => {
+            this.setState({ planets: res.data });
+            // console.log(res.data);
+            this.makeCards();
+        });
     });
   }
 
+  getHomeworldName = (homeworldID) => {
+    if( this.state.planets[homeworldID] ) {
+      return (this.state.planets[homeworldID].name);
+    } else {
+      return("unknown");
+    }
+  }
+
   makeCards = () => {
-    // TODO
+    console.log('makeCards called');
+    console.log(this.state.people);
+
+    this.state.people.map( (person, i) => {
+      let homeworldID = person.homeworld;
+      let homeworldName = this.getHomeworldName(homeworldID);
+      let card = {
+        id: person.id,
+        name: person.name,
+        image: person.image,
+        birthYear: person.birth_year,
+        homeworld: homeworldName
+      }
+
+      this.setState({ cards: [...this.state.cards, card]})
+    })
+    console.log(this.state.cards);
   }
 
   getNumCardsAndNumPages = () => {
@@ -91,25 +115,17 @@ class Cards extends Component {
     }
   }
 
-  getPlanetName = (planetID) => {
-    if( this.state.planets[planetID] ) {
-      return (this.state.planets[planetID].name);
-    } else {
-      return("unknown");
-    }
-  }
-
   displayCards = () => {
     return this.state.people.map( (person, i) => {
-      let homePlanetID = person.homeworld;
-      let homePlanetName = this.getPlanetName(homePlanetID);
+      let homeworldID = person.homeworld;
+      let homeworldName = this.getHomeworldName(homeworldID);
 
       return(
         <Card
           name={ person.name }
           image={ person.image }
           birthYear={ person.birth_year }
-          homePlanet={ homePlanetName }
+          homeworld={ homeworldName }
           key={ i }
         />
       )
