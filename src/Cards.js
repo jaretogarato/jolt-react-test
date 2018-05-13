@@ -14,6 +14,8 @@ class Cards extends Component {
     numCards: 0,
     cardsPerPage: 10,
     numPages: 0,
+    anySearchResults: false,
+    searchResults: [],
    }
 
   componentDidMount() {
@@ -26,20 +28,51 @@ class Cards extends Component {
   }
 
   getNumCardsAndNumPages = () => {
-    fetch(`http://localhost:3008/people`)
-      .then( data => data.json() )
-      .then( (data) => {
-        this.setState({
-          numCards: data.length,
-          numPages: Math.ceil(data.length / this.state.cardsPerPage)
-        });
+    if( this.state.anySearchResults ){
+      console.log('* we have search results');
+      this.setState({
+        numCards: this.state.searchResults.length,
+        numPages: Math.ceil(this.state.searchResults.length / this.state.cardsPerPage)
       });
+    } else {
+      console.log('* there are NO search results');
+      fetch(`http://localhost:3008/people`)
+        .then( data => data.json() )
+        .then( (data) => {
+          this.setState({
+            numCards: data.length,
+            numPages: Math.ceil(data.length / this.state.cardsPerPage)
+          });
+      });
+    }
+  }
+
+  setSearchResults = (data) => {
+    this.setState({ searchResults: data });
+    this.state.searchResults.length ?
+      this.setState({anySearchResults: true}) :
+      this.setState({anySearchResults: false});
+    this.getNumCardsAndNumPages();
+    this.getPeople(1);
+
+    console.log('--------------------------');
+    console.log('setSearchResults called!');
+    console.log('Cards state: ');
+    console.log(this.state);
+    console.log("this.state.people: ")
+    console.log(this.state.people);
+    console.log("this.state.searchResults: ");
+    console.log(this.state.searchResults);
   }
 
   getPeople = (page) => {
-    fetch(`http://localhost:3008/people?_page=${page}&_limit=10`)
-      .then(data => data.json())
-      .then((data) => { this.setState({ people: data }) });
+    if( this.state.anySearchResults ) {
+      this.setState({ people: this.state.searchResults });
+    } else {
+      fetch(`http://localhost:3008/people?_page=${page}&_limit=10`)
+        .then( data => data.json() )
+        .then( (data) => { this.setState({ people: data }) });
+    }
   }
 
   getPlanetName = (planetID) => {
@@ -85,7 +118,7 @@ class Cards extends Component {
           <span className='interview-text'>The Interview</span>
           <img src={wars} alt="wars-logo" />
         </div>
-        <SearchBar />
+        <SearchBar setSearchResults={this.setSearchResults}/>
         <Grid>
           <Grid.Row columns={3}>
             { this.displayCards() }

@@ -14,18 +14,20 @@ class SearchBar extends Component {
 
   updateVisible = () => {
     let { search, people } = this.state;
+    let { setSearchResults } = this.props;
 
     if (search.length === 0) {
       this.setState({ visible: people })
     } else if (search.length > 3) {
-      // axios.get(`/api/search?term=${search}`)
-      //   .then( res => this.setState( { visible: res.data } ))
       fetch(`http://localhost:3008/people?q=${search}`)
         .then( data => data.json() )
         .then( (data) => {
           this.setState({ visible: data });
-          console.log( this.state.visible );
+          setSearchResults( data );
       });
+    } else {
+      this.setState({ visible: [] });
+      setSearchResults( [] );
     }
   }
 
@@ -36,19 +38,16 @@ class SearchBar extends Component {
           <Grid.Row columns='equal'>
             <Grid.Column />
             <Grid.Column>
-                  <Input
-                    value={this.state.search}
-                    onChange={this.handleChange}
-                    icon={{ name: 'search', circular: true }}
-                    placeholder='Search Your Destiny'
-                  >
-                </Input>
-
+              <Input
+                value={this.state.search}
+                onChange={this.handleChange}
+                icon={{ name: 'search', circular: true }}
+                placeholder='Search Your Destiny'
+              />
             </Grid.Column>
             <Grid.Column />
           </Grid.Row>
         </Grid>
-
       </div>
     );
   }

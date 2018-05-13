@@ -6,7 +6,8 @@ Date    Start Time  	End Time    Mins (core)  Mins (extras)   Notes
 5/11    3:01 PM       3:37 PM     36                           (1)
 5/11    4:09 PM       4:40 PM     31
 5/12    1:05 AM       3:01 AM                  116             (2)
-5/12    3:34 PM       4:16 PM     42                           
+5/12    3:34 PM       4:16 PM     42
+5/12    7:02 PM       8::16 PM    74                           
 
 Notes
 -----
