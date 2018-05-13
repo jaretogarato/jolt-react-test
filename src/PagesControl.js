@@ -64,7 +64,15 @@ class PagesControl extends React.Component {
             </Grid.Column>
             <Grid.Column width={3}>
               <Segment inverted color='yellow' floated='right'>
-                <Button color='black' basic {...canNext} onClick={() => this.goToPage(activePage + 1)}>Next<Icon name='chevron right' /></Button>
+                <Button
+                  color='black'
+                  basic
+                  {...canNext}
+                  onClick={() => this.goToPage(activePage + 1)}
+                >
+                  Next
+                  <Icon name='chevron right' />
+                </Button>
               </Segment>
             </Grid.Column>
             <Grid.Column width={1} />

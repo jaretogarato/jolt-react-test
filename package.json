@@ -8,6 +8,7 @@
     "swapi-json-server": "git+https://github.com/joltup/swapi-json-server.git"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "react": "16.2.0",
     "react-dom": "16.2.0",
     "react-paginate": "^5.2.3",

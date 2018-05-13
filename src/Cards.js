@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Card from './Card.js';
 import './Card.css';
 import { Grid } from 'semantic-ui-react';
@@ -11,6 +12,7 @@ class Cards extends Component {
   state = {
     people: [],
     planets: [],
+    cards: [], // master, load once, people + planets
     numCards: 0,
     cardsPerPage: 10,
     numPages: 0,
@@ -20,11 +22,25 @@ class Cards extends Component {
 
   componentDidMount() {
     this.getNumCardsAndNumPages();
-    this.getPeople(1);
+    // this.getPeople(1);
 
-    fetch('http://localhost:3008/planets')
-      .then( data => data.json() )
-      .then( (data) => { this.setState({ planets: data }) } );
+    axios.get('http://localhost:3008/people')
+      .catch( err => console.log('Error retrieving people: ', err ))
+      .then( res => {
+        this.setState({ people: res.data });
+        // console.log(res.data);
+    });
+
+    axios.get('http://localhost:3008/planets')
+      .catch( err => console.log('Error retrieving planets: ', err ))
+      .then( res => {
+        this.setState({ planets: res.data });
+        // console.log(res.data);
+    });
+  }
+
+  makeCards = () => {
+    // TODO
   }
 
   getNumCardsAndNumPages = () => {
@@ -55,14 +71,14 @@ class Cards extends Component {
     this.getNumCardsAndNumPages();
     this.getPeople(1);
 
-    console.log('--------------------------');
-    console.log('setSearchResults called!');
-    console.log('Cards state: ');
-    console.log(this.state);
-    console.log("this.state.people: ")
-    console.log(this.state.people);
-    console.log("this.state.searchResults: ");
-    console.log(this.state.searchResults);
+    // console.log('--------------------------');
+    // console.log('setSearchResults called!');
+    // console.log('Cards state: ');
+    // console.log(this.state);
+    // console.log("this.state.people: ")
+    // console.log(this.state.people);
+    // console.log("this.state.searchResults: ");
+    // console.log(this.state.searchResults);
   }
 
   getPeople = (page) => {
